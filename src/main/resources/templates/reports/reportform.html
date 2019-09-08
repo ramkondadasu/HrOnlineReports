@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HR Online Report Form</title>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+     <link th:href="@{/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/cdn.datatables.net/buttons/1.4.2/css/buttons.bootstrap.min.css}"	rel="stylesheet" />
+<script th:src="@{/code.jquery.com/jquery-1.12.4.js}"></script>
+     <!-- Include Bootstrap Datepicker -->
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+     
+   <script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+   
+<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
+     
+    <meta http-equiv="Expires" content="0" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+
+
+
+<script type="text/javascript">
+hideall();
+
+function onchangerep(){
+	//var selectedText = val.options[val.selectedIndex].innerHTML;
+    //var selectedValue = val.value;
+    //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+
+var e = document.getElementById("sel1");
+var repid = e.options[e.selectedIndex].value;
+
+ 
+    //clear all
+    	//hide all
+    	hideall();
+    if(repid == "5"){
+    	
+    	//show 1
+    	toggle('rep1',0)
+    }else if(repid == '2'){
+    	//show 2
+    	toggle('rep2',0)
+    }else if(repid == '1'){
+    	//show 2
+    	toggle('rep3',0)
+    }else if(repid == '11'){
+    	//show 2
+    	toggle('rep11',0)
+    }else if(repid == '12'){
+    	//show 2
+    	toggle('rep12',0)
+    }else if(repid == '13'){
+    	//show 2
+    	toggle('rep13',0)
+    }else if(repid == '14'){
+    	//show 2
+    	toggle('rep14',0)
+    }else if(repid == '15'){
+    	//show 2
+    	toggle('rep15',0)
+    }else if(repid == '16'){
+    	//show 2
+    	toggle('rep16',0)
+    }else if(repid == '17'){
+    	//show 2
+    	toggle('rep17',0)
+    }else if(repid == '17'){
+    	//show 2
+    	toggle('rep17',0)
+    }else if(repid == '18'){
+    	//show 2
+    	toggle('rep18',0)
+    }else if(repid == '19'){
+    	//show 2
+    	toggle('rep19',0)
+    }else if(repid == '20'){
+    	//show 2
+    	toggle('rep20',0)
+    }else if(repid == '21'){
+    	//show 2
+    	toggle('rep21',0)
+    }else if(repid == '22'){
+    	//show 2
+    	toggle('rep22',0)
+    }else if(repid == '23'){
+    	//show 2
+    	toggle('rep23',0)
+    }else if(repid == '24'){
+    	//show 2
+    	toggle('rep24',0)
+    }else if(repid == '25'){
+    	//show 2
+    	toggle('rep25',0)
+    }else if(repid == '26'){
+    	//show 2
+    	toggle('rep26',0)
+    }else if(repid == '27'){
+    	//show 2
+    	toggle('rep27',0)
+    }else if(repid == '28'){
+    	//show 2
+    	toggle('rep28',0)
+    }else if(repid == '29'){
+    	//show 2
+    	toggle('rep29',0)
+    }else if(repid == '30'){
+    	//show 2
+    	toggle('rep30',0)
+    }else if(repid == '31'){
+    	//show 2
+    	toggle('rep31',0)
+    }else if(repid == '32'){
+    	//show 2
+    	toggle('rep32',0)
+    }else if(repid == '33'){
+    	//show 2
+    	toggle('rep33',0)
+    }else{
+    	hideall();
+    }
+}
+function toggle(divid,val){
+	//document.getElementById('div').style.display = "";
+	if(val == 1){
+		//hide
+		document.getElementById(divid).style.display = "none";
+	}
+	if(val == 0){
+		//show
+		document.getElementById(divid).style.display = "";
+	}
+}
+function hideall(){
+	toggle('rep1',1);//clear
+	toggle('rep2',1);//clear
+	toggle('rep3',1);//clear
+	toggle('rep11',1);//clear
+	toggle('rep12',1);//clear
+	toggle('rep13',1);//clear
+	toggle('rep14',1);//clear
+	toggle('rep15',1);//clear
+	toggle('rep16',1);//clear
+	toggle('rep17',1);//clear
+	
+	toggle('rep18',1);//clear
+	toggle('rep19',1);//clear
+	toggle('rep20',1);//clear
+	toggle('rep21',1);//clear
+	toggle('rep22',1);//clear
+	
+	toggle('rep23',1);//clear
+	toggle('rep24',1);//clear
+	toggle('rep25',1);//clear
+	toggle('rep26',1);//clear
+	toggle('rep27',1);//clear
+	toggle('rep28',1);//clear
+	toggle('rep29',1);//clear
+	toggle('rep30',1);//clear
+	toggle('rep31',1);//clear
+	toggle('rep32',1);//clear
+	toggle('rep33',1);//clear
+	
+	
+
+}
+
+function emprepval()
+{
+        
+    var n=document.getElementById("fnid").value;
+    var n1=document.getElementById("lnid").value;
+    var num = n + n1;
+   
+    if(num == 0 ){
+    	 alert("Either Employee First Name or Laste Name is required.");
+    	 return false;
+    }else{
+    	return true
+    }
+ }
+</script>
+
+
+     
+</head>
+<body >
+ 
+     <nav class="navbar navbar-inverse">
+        <div class="container">
+ 			 <div class="navbar-header" th:switch="${session.role}"> 
+                 <a th:case="'A'" class="navbar-brand" th:href="@{/users}">Admin</a> 
+                
+             </div> 
+            
+            
+           
+             <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a th:href="@{/}" th:text="'Logged in User: ' +${session.usr}" th:unless="${session == null}">....</a></li>
+                   
+                </ul>
+            </div> 
+        </div>
+    </nav>
+    
+ <div class="container">
+  <h2>HR Online Report</h2>
+  <p>Selecting Report will pre-populate form fields:</p>
+  <form th:object="${reportform}" th:action="@{/reportform}" id="repform" method="post" class="form-horizontal">
+    <div class="form-group">
+      <label for="sel1">Select Report:</label>
+      
+      <!-- 
+      <select class="form-control" id="sel1" onchange="onchangerep()" th:field="*{reportId}" th:required="required">
+      <option value="0"></option>
+        <option value="5">TxDOT Employee Training History - Total Training Hrs by Employee</option>
+        <option value="2">TxDOT Employee ID Lookup</option>
+        <option value="1">TxDOT Employee Training History - By DDO </option>
+        <option value="11">Case Not Marked Final</option>
+        <option value="12">With Letter Date</option>
+         <option value="13">Case Step Behavior Summary</option>
+         <option value="14">Action Reason</option>
+         <option value="15">Employee Evaluation</option>
+         <option value="16">Prior State Government Work Experience Data </option>
+         <option value="17">PE License Data (Prior to Oct 2014)  </option>
+         
+         <option value="18">Job Code Education Data</option>
+         <option value="19">Job Code Experience Data</option>
+         <option value="20">Job Code Duty Data</option>
+         <option value="21">Job Code Subs</option>
+         <option value="22">Job Code Competence Data</option>
+         
+          <option value="23">TRN023_Course Description</option> 
+<option value="24">Salary Allocation Data</option>
+<option value="25">All License Data</option>
+<option value="26">Education Degree Data</option>
+<option value="27">Language, Honor,Membership Data</option> 
+<option value="28">ALL TRAINING HISTORY, dynamic</option>
+        
+        
+      </select>
+      
+       -->
+      
+      <select class="form-control" id="sel1"  onchange="onchangerep()" th:field="*{reportId}">
+    <option value="0"></option>
+    
+    
+    <option th:each="dropDownItem : ${sampleDropdownMap}" 
+			  th:value="${dropDownItem.key}" 
+			  th:text="${dropDownItem.value}" />
+    
+    
+    
+</select>
+      
+      
+      
+    </div >
+    
+    <!-- Report 1 -->
+    <div class="panel panel-primary" id="rep1" th:style="${reportform.reportId} == '5' ? '' : 'display:none'" >
+    <div class="panel-body">
+       
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit}"/>
+        <!-- datalists -->
+  <datalist id="bunits">
+<option value="01PAR"/>
+<option value="02FTW"/>
+<option value="03WFS"/>
+<option value="04AMA"/>
+<option value="05LBB"/>
+<option value="06ODA"/>
+<option value="07SJT"/>
+<option value="08ABL"/>
+<option value="09WAC"/>
+<option value="10TYL"/>
+<option value="11LFK"/>
+<option value="12HOU"/>
+<option value="13YKM"/>
+<option value="14AUS"/>
+<option value="15SAT"/>
+<option value="16CRP"/>
+<option value="17BRY"/>
+<option value="18DAL"/>
+<option value="19ATL"/>
+<option value="20BMT"/>
+<option value="21PHR"/>
+<option value="22LRD"/>
+<option value="23BWD"/>
+<option value="24ELP"/>
+<option value="25CHS"/>
+<option value="26HOU"/>
+<option value="29GSD"/>
+<option value="31RCN"/>
+<option value="32RCS"/>
+<option value="33RCE"/>
+<option value="34RCW"/>
+<option value="36PPD"/>
+<option value="36PPS"/>
+<option value="37FOD"/>
+<option value="38SSD"/>
+<option value="40MSP"/>
+<option value="41ADM"/>
+<option value="42AVN"/>
+<option value="43FIN"/>
+<option value="44GCO"/>
+<option value="44GSD"/>
+<option value="44PRO"/>
+<option value="44PUR"/>
+<option value="45AUD"/>
+<option value="45BRG"/>
+<option value="46CST"/>
+<option value="47MNT"/>
+<option value="47PLN"/>
+<option value="48DES"/>
+<option value="49MAT"/>
+<option value="49PED"/>
+<option value="49PME"/>
+<option value="50TPP"/>
+<option value="51PTN"/>
+<option value="52VTR"/>
+<option value="53HRD"/>
+<option value="54OCR"/>
+<option value="55ROW"/>
+<option value="56TRV"/>
+<option value="57ENV"/>
+<option value="58TRF"/>
+<option value="59IOD"/>
+<option value="59ISD"/>
+<option value="59ITD"/>
+<option value="59ITM"/>
+<option value="59TSD"/>
+<option value="59TSS"/>
+<option value="60OCC"/>
+<option value="61MVD"/>
+<option value="70RTI"/>
+<option value="70RTT"/>
+<option value="71MMO"/>
+<option value="71RMD"/>
+
+<option value="72LGP"/>
+<option value="73MCD"/>
+
+<option value="74MAN"/>
+<option value="74OPI"/>
+<option value="75CMD"/>
+<option value="75GBE"/>
+<option value="75GPA"/>
+<option value="75LAO"/>
+<option value="76PIO"/>
+
+<option value="76SLA"/>
+<option value="77FED"/>
+
+<option value="78IRO"/>
+<option value="79OGC"/>
+<option value="80BOP"/>
+
+<option value="81ICP"/>
+<option value="81OCE"/>
+<option value="Compl"/>
+<option value="82ATP"/>
+<option value="83RRD"/>
+<option value="83RTL"/>
+<option value="84OPE"/>
+<option value="84SPP"/>
+<option value="84TQD"/>
+<option value="ining"/>
+<option value="85PMO"/>
+<option value="86SPD"/>
+<option value="86TTA"/>
+<option value="87CSO"/>
+<option value="87TOD"/>
+<option value="88BRG"/>
+<option value="89DMO"/>
+<option value="90ISD"/>
+<option value="91ICR"/>
+<option value="92ISO"/>
+<option value="93IPM"/>
+<option value="94MRD"/>
+<option value="95CSO"/>
+<option value="96ERP"/>
+</datalist>
+  <!-- end -->
+      </div>
+    </div>
+    
+   
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Course Start Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePicker">
+                <input type="text" class="form-control" th:field="*{courseStDate}" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Course End Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePicker1">
+                <input type="text" class="form-control" th:field="*{courseEndDate}" name="endDate" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Course:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{courseCodes5}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+<option th:value="0" th:text="0.."/>
+<option th:value="1" th:text="1..."/>
+<option th:value="2" th:text="2.."/>
+<option th:value="3" th:text="3..."/>
+<option th:value="4" th:text="4.."/>
+<option th:value="5" th:text="5..."/>
+<option th:value="6" th:text="6.."/>
+<option th:value="7" th:text="7..."/>
+<option th:value="8" th:text="8.."/>
+<option th:value="9" th:text="9..."/>               
+            
+        </select>        
+    </div>
+    </div>
+   
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="employeeid5">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{employeeid5}"/>
+      </div>
+    </div>
+  
+    
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" id="rep1button">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 2 -->
+    <div class="panel panel-primary" id="rep2" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="empfirstname">Employee First Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" placeholder="Enter First Name" th:field="*{empFirstName}"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="emplastname">Employee Last Name:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" placeholder="Enter Last Name" th:field="*{empLastName}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-primary" id="rep3button">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  
+  <!-- Report 3 -->
+   
+    <div class="panel panel-primary" id="rep3" th:style="${reportform.reportId} == '3' ? '' : 'display:none'" >
+    <div class="panel-body">
+       
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit1}"/>
+        
+      </div>
+    </div>
+    
+    
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Course Start Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePicker2">
+                <input type="text" class="form-control" th:field="*{courseStDate1}" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Course End Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePicker3">
+                <input type="text" class="form-control" th:field="*{courseEndDate1}" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+  
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Course:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{courseCodes}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+<option th:value="0" th:text="0.."/>
+<option th:value="1" th:text="1..."/>
+<option th:value="2" th:text="2.."/>
+<option th:value="3" th:text="3..."/>
+<option th:value="4" th:text="4.."/>
+<option th:value="5" th:text="5..."/>
+<option th:value="6" th:text="6.."/>
+<option th:value="7" th:text="7..."/>
+<option th:value="8" th:text="8.."/>
+<option th:value="9" th:text="9..."/>               
+            
+        </select>        
+    </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="singleCourseCodes1">Course Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singleCourseCodes1}"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{employeeid}"/>
+      </div>
+    </div>
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+      
+         <button type="submit" class="btn btn-primary" id="rep2button">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  
+  <!-- Report 11 -->
+    <div class="panel panel-primary" id="rep11" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep11employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep11employeeid}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 11 end -->
+  
+  <!-- Report 12 -->
+    <div class="panel panel-primary" id="rep12" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep12employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep12employeeid}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 12 end -->
+  
+  <!-- Report 13 -->
+    <div class="panel panel-primary" id="rep13" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep13employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep13employeeid}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 13 end -->
+  
+    <!-- Report 14 -->
+    <div class="panel panel-primary" id="rep14" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+   
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Action Reason Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 14 end -->
+  
+  <!-- Report 15 -->
+    <div class="panel panel-primary" id="rep15" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep15employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep15employeeid}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 15 end -->
+  <!-- Report 16 -->
+    <div class="panel panel-primary" id="rep16" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep16employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep16employeeid}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 16 end -->
+    <!-- Report 17 -->
+    <div class="panel panel-primary" id="rep17" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="businessUnit17">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit17}"/>
+        
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="rep17employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep17employeeid}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 18 -->
+    <div class="panel panel-primary" id="rep18" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes18}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+    
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode18">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode18}"/>
+      </div>
+    </div>
+     
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="jobtitle18">Job Title:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{jobtitle18}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 19 -->
+    <div class="panel panel-primary" id="rep19" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes19}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode19">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode19}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="jobtitle19">Job Title:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{jobtitle19}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 20 -->
+    <div class="panel panel-primary" id="rep20" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes20}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode20">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode20}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="jobtitle20">Job Title:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{jobtitle20}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 21 -->
+    <div class="panel panel-primary" id="rep21" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes21}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+     
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode21">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode21}"/>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 22 -->
+    <div class="panel panel-primary" id="rep22" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes22}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+     
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode22">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode22}"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="jobtitle22">Job Title:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{jobtitle22}"/>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 21 -->
+    <div class="panel panel-primary" id="rep28" th:style="${reportform.reportId} == '28' ? '' : 'display:none'" >
+    <div class="panel-body">
+       
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Course:</label>
+      <div class="col-sm-3">          
+       
+        <!-- datalists -->
+  <select th:field="*{courseCodes28}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+<option th:value="0" th:text="0.."/>
+<option th:value="1" th:text="1..."/>
+<option th:value="2" th:text="2.."/>
+<option th:value="3" th:text="3..."/>
+<option th:value="4" th:text="4.."/>
+<option th:value="5" th:text="5..."/>
+<option th:value="6" th:text="6.."/>
+<option th:value="7" th:text="7..."/>
+<option th:value="8" th:text="8.."/>
+<option th:value="9" th:text="9..."/>               
+            
+        </select> 
+  <!-- end -->
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep28employeeid">Course Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singleCourseCodes28}"/>
+      </div>
+    </div>
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Course Start Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePickerStart28">
+                <input type="text" class="form-control" th:field="*{courseStDate28}" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Course End Date:</label>
+      <div class="col-sm-3">
+       
+           <div class="input-group input-append date" id="datePickerEnd28">
+                <input type="text" class="form-control" th:field="*{courseEndDate28}" />
+                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+         
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep28employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep28employeeid}"/>
+      </div>
+    </div>
+    
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 3 = 23 -->
+   
+    <div class="panel panel-primary" id="rep23" th:style="${reportform.reportId} == '23' ? '' : 'display:none'" >
+    <div class="panel-body">
+       
+
+    
+    
+ 
+    
+    
+     
+  
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Course:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{courseCodes23}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+<option th:value="0" th:text="0.."/>
+<option th:value="1" th:text="1..."/>
+<option th:value="2" th:text="2.."/>
+<option th:value="3" th:text="3..."/>
+<option th:value="4" th:text="4.."/>
+<option th:value="5" th:text="5..."/>
+<option th:value="6" th:text="6.."/>
+<option th:value="7" th:text="7..."/>
+<option th:value="8" th:text="8.."/>
+<option th:value="9" th:text="9..."/>               
+            
+        </select>        
+    </div>
+    </div>
+   
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  
+  <!-- Report 10 = 24 -->
+    <div class="panel panel-primary" id="rep24" th:style="${reportform.reportId} == '24' ? '' : 'display:none'" >
+    <div class="panel-body">
+       
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits24"  class="form-control" th:field="*{businessUnit24}"/>
+        <!-- datalists -->
+  <datalist id="bunits24">
+<option value="01PAR"/>
+<option value="02FTW"/>
+<option value="03WFS"/>
+<option value="04AMA"/>
+<option value="05LBB"/>
+<option value="06ODA"/>
+<option value="07SJT"/>
+<option value="08ABL"/>
+<option value="09WAC"/>
+<option value="10TYL"/>
+<option value="11LFK"/>
+<option value="12HOU"/>
+<option value="13YKM"/>
+<option value="14AUS"/>
+<option value="15SAT"/>
+<option value="16CRP"/>
+<option value="17BRY"/>
+<option value="18DAL"/>
+<option value="19ATL"/>
+<option value="20BMT"/>
+<option value="21PHR"/>
+<option value="22LRD"/>
+<option value="23BWD"/>
+<option value="24ELP"/>
+<option value="25CHS"/>
+<option value="26HOU"/>
+<option value="29GSD"/>
+<option value="31RCN"/>
+<option value="32RCS"/>
+<option value="33RCE"/>
+<option value="34RCW"/>
+<option value="36PPD"/>
+<option value="36PPS"/>
+<option value="37FOD"/>
+<option value="38SSD"/>
+<option value="40MSP"/>
+<option value="41ADM"/>
+<option value="42AVN"/>
+<option value="43FIN"/>
+<option value="44GCO"/>
+<option value="44GSD"/>
+<option value="44PRO"/>
+<option value="44PUR"/>
+<option value="45AUD"/>
+<option value="45BRG"/>
+<option value="46CST"/>
+<option value="47MNT"/>
+<option value="47PLN"/>
+<option value="48DES"/>
+<option value="49MAT"/>
+<option value="49PED"/>
+<option value="49PME"/>
+<option value="50TPP"/>
+<option value="51PTN"/>
+<option value="52VTR"/>
+<option value="53HRD"/>
+<option value="54OCR"/>
+<option value="55ROW"/>
+<option value="56TRV"/>
+<option value="57ENV"/>
+<option value="58TRF"/>
+<option value="59IOD"/>
+<option value="59ISD"/>
+<option value="59ITD"/>
+<option value="59ITM"/>
+<option value="59TSD"/>
+<option value="59TSS"/>
+<option value="60OCC"/>
+<option value="61MVD"/>
+<option value="70RTI"/>
+<option value="70RTT"/>
+<option value="71MMO"/>
+<option value="71RMD"/>
+
+<option value="72LGP"/>
+<option value="73MCD"/>
+
+<option value="74MAN"/>
+<option value="74OPI"/>
+<option value="75CMD"/>
+<option value="75GBE"/>
+<option value="75GPA"/>
+<option value="75LAO"/>
+<option value="76PIO"/>
+
+<option value="76SLA"/>
+<option value="77FED"/>
+
+<option value="78IRO"/>
+<option value="79OGC"/>
+<option value="80BOP"/>
+
+<option value="81ICP"/>
+<option value="81OCE"/>
+<option value="Compl"/>
+<option value="82ATP"/>
+<option value="83RRD"/>
+<option value="83RTL"/>
+<option value="84OPE"/>
+<option value="84SPP"/>
+<option value="84TQD"/>
+<option value="ining"/>
+<option value="85PMO"/>
+<option value="86SPD"/>
+<option value="86TTA"/>
+<option value="87CSO"/>
+<option value="87TOD"/>
+<option value="88BRG"/>
+<option value="89DMO"/>
+<option value="90ISD"/>
+<option value="91ICR"/>
+<option value="92ISO"/>
+<option value="93IPM"/>
+<option value="94MRD"/>
+<option value="95CSO"/>
+<option value="96ERP"/>
+</datalist>
+  <!-- end -->
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="rep12employeeid">OR</label>
+      <div class="col-sm-3">          
+      
+      </div>
+    </div>
+ 
+   
+    
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="rep12employeeid">Fiscal Year:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Fiscal Year" th:field="*{courseStDate24}"/>
+      </div>
+    </div>
+    
+   
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  
+  <!-- Report 21 = 28 
+    <div class="panel panel-primary" id="rep28" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Course:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes18}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+<option th:value="0" th:text="0.."/>
+<option th:value="1" th:text="1..."/>
+<option th:value="2" th:text="2.."/>
+<option th:value="3" th:text="3..."/>
+<option th:value="4" th:text="4.."/>
+<option th:value="5" th:text="5..."/>
+<option th:value="6" th:text="6.."/>
+<option th:value="7" th:text="7..."/>
+<option th:value="8" th:text="8.."/>
+<option th:value="9" th:text="9..."/> 
+        
+            
+        </select>        
+    </div>
+    </div>
+     
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  -->
+  
+  <!-- Report 12 = 25 -->
+    <div class="panel panel-primary" id="rep25" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="businessUnit25">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit25}"/>
+        
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="rep25employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep25employeeid}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 13 = 26 -->
+    <div class="panel panel-primary" id="rep26" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="businessUnit26">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit26}"/>
+        
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="rep25employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep26employeeid}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 14 = 27 -->
+    <div class="panel panel-primary" id="rep27" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="businessUnit25">Business Unit:</label>
+      <div class="col-sm-3">          
+        <input list="bunits"  class="form-control" th:field="*{businessUnit27}"/>
+        
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="rep27employeeid">Employee ID:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter Employee ID" th:field="*{rep27employeeid}"/>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 29 -->
+    <div class="panel panel-primary" id="rep29" style="display: none;">
+    <div class="panel-body">
+       
+
+ 
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Job Codes:</label>
+      <div class="col-sm-3">
+    
+        <select th:field="*{jobcodes29}" class="form-control" multiple="multiple">
+           <option th:value="A" th:text="A.."/>
+<option th:value="B" th:text="B..."/>
+<option th:value="C" th:text="C.."/>
+<option th:value="D" th:text="D..."/>
+<option th:value="E" th:text="E.."/>
+<option th:value="F" th:text="F..."/>
+<option th:value="G" th:text="G.."/>
+<option th:value="H" th:text="H..."/>
+<option th:value="I" th:text="I.."/>
+<option th:value="J" th:text="J..."/>
+<option th:value="K" th:text="K.."/>
+<option th:value="L" th:text="L..."/>
+<option th:value="M" th:text="M.."/>
+<option th:value="N" th:text="N..."/>
+<option th:value="O" th:text="O.."/>
+<option th:value="P" th:text="P..."/>
+<option th:value="Q" th:text="Q.."/>
+<option th:value="R" th:text="R..."/>
+<option th:value="S" th:text="S.."/>
+<option th:value="T" th:text="T..."/>
+<option th:value="U" th:text="U.."/>
+<option th:value="V" th:text="V..."/>
+<option th:value="W" th:text="W.."/>
+<option th:value="X" th:text="X..."/>
+<option th:value="Y" th:text="Y.."/>
+<option th:value="Z" th:text="Z..."/>
+        
+            
+        </select>        
+    </div>
+    </div>
+     
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="singlejobcode29">Job Code:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{singlejobcode29}"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="jobtitle29">Job Title:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" th:field="*{jobtitle29}"/>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" >Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  
+  <!-- Report 30 -->
+    <div class="panel panel-primary" id="rep30" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep30ssn">SSN:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter SSN" th:field="*{rep30ssn}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+   <!-- Report 31 -->
+    <div class="panel panel-primary" id="rep31" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep31ssn">SSN:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter SSN" th:field="*{rep31ssn}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+   <!-- Report 32 -->
+    <div class="panel panel-primary" id="rep32" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep32ssn">SSN:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter SSN" th:field="*{rep32ssn}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+   <!-- Report 33 -->
+    <div class="panel panel-primary" id="rep33" style="display: none;">
+    <div class="panel-body">
+       
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="rep33ssn">SSN:</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control" placeholder="Enter SSN" th:field="*{rep33ssn}"/>
+      </div>
+    </div>
+    
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Run Report</button>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Report 16 end -->
+  
+
+  </form>
+</div>
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script>
+$(document).ready(function() {
+
+    $('#datePicker')
+    .datepicker({
+        format: 'mm/dd/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Revalidate the date field
+        $('#repform').formValidation('revalidateField', 'courseStDate');
+    });
+
+$('#datePickerStart28')
+.datepicker({
+    format: 'mm/dd/yyyy'
+})
+.on('changeDate', function(e) {
+    // Revalidate the date field
+    $('#repform').formValidation('revalidateField', 'courseStDate28');
+});
+$('#datePickerEnd28')
+.datepicker({
+    format: 'mm/dd/yyyy'
+})
+.on('changeDate', function(e) {
+    // Revalidate the date field
+    $('#repform').formValidation('revalidateField', 'courseEndDate28');
+});
+$('#datePicker2')
+.datepicker({
+    format: 'mm/dd/yyyy'
+})
+.on('changeDate', function(e) {
+    // Revalidate the date field
+    $('#repform').formValidation('revalidateField', 'courseStDate1');
+});
+
+$('#datePicker3')
+.datepicker({
+    format: 'mm/dd/yyyy'
+})
+.on('changeDate', function(e) {
+    // Revalidate the date field
+    $('#repform').formValidation('revalidateField', 'courseEndDate1');
+});
+
+
+//If there are any validation errors, onchange of dropdown rest the form validations
+$("#sel1").change(function () {   
+   $('#repform').data('formValidation').resetForm();
+});
+
+$("#rep1button").click(function(){
+	$('#repform').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+        //validations start
+        fields: {        	
+        	courseStDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'Course Start Date is required.'
+                    	//count = count +1
+                    }
+                }
+            }
+           
+        }        
+    }
+	
+	
+	);
+});
+$("#rep2button").click(function(){
+	$('#repform').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+        //validations start
+        fields: {        	
+        	courseStDate1: {
+                validators: {
+                    notEmpty: {
+                        message: 'Course Start Date is required.'
+                    	//count = count +1
+                    }
+                }
+            }
+           
+        }        
+    }
+	
+	
+	);
+});
+$("#rep3button").click(function(){
+	$('#repform').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+        //validations start
+        fields: {        	
+        	empLastName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Employee LastName is required.'
+                    	//count = count +1
+                    }
+                }
+            }
+           
+        }        
+    }
+	
+	
+	);
+});
+
+	
+
+});
+
+
+//Validation Process
+
+
+
+//Val End
+
+
+</script>
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
+
+</body>
+</html>

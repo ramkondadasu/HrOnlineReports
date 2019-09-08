@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<title th:utext="${title}">The awesome application</title>
+
+
+
+
+
+<link th:href="@{/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/cdn.datatables.net/buttons/1.4.2/css/buttons.bootstrap.min.css}"	rel="stylesheet" />
+<script th:src="@{/code.jquery.com/jquery-1.12.4.js}"></script>
+
+
+<script type="text/javascript" src="/cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" 	src="/cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript"	src="/cdn.datatables.net/buttons/1.4.2/js/buttons.bootstrap.min.js"></script>
+<script type="text/javascript" src="/cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="/cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="/cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="/cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script type="text/javascript"
+	src="/cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js">
+	
+</script>
+<script type="text/javascript"
+	src="/cdn.datatables.net/buttons/1.4.2/js/buttons.colVis.min.js">
+	
+</script>
+
+<script type="text/javascript" src="/moment.min.js"></script>
+<script type="text/javascript" src="/datetime-moment.js"></script>
+
+
+<script type="text/javascript" class="init">
+	$(document).ready(
+			function() {
+				$.fn.dataTable.moment('MM-DD-YYYY'); 
+				var table = $('#example').DataTable({
+					lengthChange : false,
+					buttons : [ 'copy', 'excel', 'pdf', 'colvis' ]
+				});
+
+				table.buttons().container().appendTo(
+						'#example_wrapper .col-sm-6:eq(0)');
+			});
+</script>
+</head>
+<body>
+
+
+<br></br>
+ <nav class="navbar navbar-inverse">
+        <div class="container">
+<!--             <div class="navbar-header"> -->
+<!--                 <a class="navbar-brand" th:href="@{/}">HR Online Reporting Tool</a> -->
+<!--             </div> -->
+           
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/reports/reportform.html}">Back To Report Selection</a>
+            </div>
+             <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ><a th:href="@{/}" th:text="'Logged in User: ' +${session.usr}" th:unless="${session == null}">....</a></li>
+                   
+                </ul>
+            </div> 
+        </div>
+    </nav>
+<div class="alert alert-info">
+  <strong>Info!</strong> If data exists then the Results are limited to first 20,000 Records.
+</div>
+<br></br>
+	
+ <!-- <div th:replace="fragments/footer :: footer"/>  --> 
+        
+        
+        <div th:switch="${#httpServletRequest.getParameter('repid')}"> 
+  <p th:case="'5'">
+  <center><h4>TxDOT Employee Training History - Total Training Hrs by Employee</h4></center>
+  <!-- Report 5 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						
+						<th>Employee Id</th>
+						<th>Employee Name</th>
+						<th>Business Unit</th>
+						<th>Course</th>
+						<th>Fiscal Year</th>
+						<th>DemandId</th>
+						<th>Duration Time</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+					
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.employeeName}"></td>
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.course}"></td>
+						<td th:text="${product.fy}"></td>
+						<td th:text="${product.demandId}"></td>
+						<td th:text="${product.durationTime}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 5 -->
+  </p>
+  
+  
+  
+  
+  <p th:case="'2'">
+  <!-- Report 5 -->
+   <center><h4>TxDOT Employee ID Lookup</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Employee Id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Full Name</th>
+						
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+					    <td th:text="${product.emplid}"></td>
+						<td th:text="${product.firstName}"></td>
+						<td th:text="${product.lastName}"></td>
+						
+						<td th:text="${product.name}"></td>
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 5 -->
+  </p>
+  <p th:case="'1'">
+  <center><h4>Training History - By DDO </h4></center>
+  <!-- Report 1 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Business Unit</th>
+						<th>Dept Id</th>
+						<th>DDO</th>
+						<th>Employee Id</th>						
+						<th>Course</th>
+						<th>Course Start Date</th>
+						<th>Course End Date</th>
+						
+						<th>Course Title</th>
+						<th>Attendance</th>
+						<th>Duration Time</th>
+						<th>CEU</th>
+						<th>Cost Unit Code</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.deptid}"></td>
+						<td th:text="${product.descr}"></td>
+						<td th:text="${product.emplid}"></td>						
+						<td th:text="${product.course}"></td>
+						<td th:text="${product.courseStartDt} ? ${#dates.format(product.courseStartDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.courseEndDt} ? ${#dates.format(product.courseEndDt, 'MM-dd-yyyy')}"></td>
+						
+						<td th:text="${product.courseTitle}"></td>
+						<td th:text="${product.attendance}"></td>
+						<td th:text="${product.durationTime}"></td>
+						<td th:text="${product.xCeu}"></td>
+						<td th:text="${product.costUnitCd}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 1 -->
+  </p>
+  <p th:case="'14'">
+  <center><h4>Action Reason Table</h4></center>
+  <!-- Report 14 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Action</th>
+						<th>Action Reason</th>
+						<th>Description</th>						
+						<th>Eff Status</th>
+						<th>Effective Date</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.action}"></td>
+						<td th:text="${product.actionReason}"></td>
+						<td th:text="${product.descr}"></td>						
+						<td th:text="${product.effStatus}"></td>						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 14 -->
+  </p>
+  <p th:case="'11'">
+  <center><h4>Disciplinary Actions - Cases Not Marked Final</h4></center>
+  <!-- Report 11 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>Business Unit</th>						
+						<th>Department Id</th>
+						<th>Final Resolution</th>						
+						<th>Letter Printed Dt</th>						
+						<th>Case Number</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>	
+						<td th:text="${product.businessUnit}"></td>							
+						<td th:text="${product.deptid}"></td>				
+						<td th:text="${product.finalResolution}"></td>
+						<td th:text="${product.letterPrintedDt} ? ${#dates.format(product.letterPrintedDt, 'MM-dd-yyyy')}"></td>						
+						<td th:text="${product.xCaseNbr}"></td>
+						
+	
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 11 -->
+  </p>
+  <p th:case="'12'">
+  <center><h4>Disciplinary Actions - With Letter Date</h4></center>
+  <!-- Report 12 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>Business Unit</th>						
+						<th>Department Id</th>
+						<th>Final Resolution</th>						
+						<th>Letter Printed Dt</th>						
+						<th>Case Number</th>
+						<th>Completed</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>	
+						<td th:text="${product.businessUnit}"></td>							
+						<td th:text="${product.deptid}"></td>				
+						<td th:text="${product.finalResolution}"></td>
+						<td th:text="${product.letterPrintedDt} ? ${#dates.format(product.letterPrintedDt, 'MM-dd-yyyy')}"></td>						
+						<td th:text="${product.xCaseNbr}"></td>
+						<td th:text="${product.completed}"></td>
+						
+	
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+	 
+  <!-- end Report 12 -->
+  </p>
+    <p th:case="'13'">
+    <center><h4>Disciplinary Actions - Case Step Behavior Summary</h4></center>
+  <!-- Report 13 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>First Name Srch</th>						
+						<th>Last Name Srch</th>
+						<th>Letter Printed Dt</th>						
+						<th>District</th>						
+						<th>Case Number</th>
+						<th>Report Summary</th>
+						
+						<th>Disc Type</th>
+						<th>Disc Type Desc</th>
+						<th>Disc Step</th>
+						<th>Disc Step Desc</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>	
+						<td th:text="${product.firstNameSrch}"></td>							
+						<td th:text="${product.lastNameSrch}"></td>	
+						<td th:text="${product.letterPrintedDt} ? ${#dates.format(product.letterPrintedDt, 'MM-dd-yyyy')}"></td>			
+						<td th:text="${product.txdotDistrictAbbv}"></td>											
+						<td th:text="${product.xCaseNbr}"></td>
+						<td th:text="${product.xReportSummary}"></td>
+						
+						<td th:text="${product.disciplinaryType}"></td>
+						<td th:text="${product.discipTypeDescr}"></td>
+						<td th:text="${product.disciplinaryStep}"></td>
+						<td th:text="${product.discipStepDescr}"></td>
+	
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+  <!-- end Report 13 -->
+  <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  </p>
+  <p th:case="'15'">
+  <center><h4>Employee Evaluation</h4></center>
+  <!-- Report 15 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Employee Id</th>
+						<th>Name</th>
+						<th>Next Review Dt</th>						
+						<th>Eff Dt</th>						
+						<th>Rating Scale</th>
+						<th>Review Dt</th>
+						<th>Review From Dt</th>
+						<th>Review Rating</th>
+						<th>Rating Descr</th>
+						<th>Review Thru Dt</th>
+						<th>review Type</th>
+						<th>Evaluation Type</th>
+						
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.name}"></td>
+						<td th:text="${product.nextReviewDt} ? ${#dates.format(product.nextReviewDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>						
+						<td th:text="${product.ratingScale}"></td>
+						<td th:text="${product.reviewDt} ? ${#dates.format(product.reviewDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.reviewFromDt} ? ${#dates.format(product.reviewFromDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.reviewRating}"></td>
+						<td th:text="${product.descr}"></td>
+						<td th:text="${product.reviewThruDt} ? ${#dates.format(product.reviewThruDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.reviewType}"></td>
+						<td th:text="${product.xlatlongname}"></td>
+						
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 14 -->
+  </p>
+  <p th:case="'16'">
+   <center><h4>Prior State Government Work Experience Data</h4></center>
+  <!-- Report 16 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Employee Id</th>
+						<th>Employee Name</th>
+						<th>Company</th>
+						<th>Start DT</th>						
+						<th>End Dt</th>
+						<th>Company Name</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.name}"></td>
+						<td th:text="${product.company}"></td>
+						<td th:text="${product.startDt} ? ${#dates.format(product.startDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.endDt} ? ${#dates.format(product.endDt, 'MM-dd-yyyy')}"></td>						
+						<td th:text="${product.descr100}"></td>
+						
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 16 -->
+  </p>
+   <!-- end Report 14 -->
+
+  <p th:case="'17'">
+   <center><h4>Accomplishments - All License Data(Prior to Oct 2014)</h4></center>
+  <!-- Report 17 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Employee Id</th>
+						<th>Business Unit</th>
+						<th>Employee Name</th>
+						
+						<th>Dept Id</th>						
+						<th>Expiratn Dt</th>
+						<th>Accomplishment</th>
+						<th>Accomplishment Dscr</th>
+						<th>License Nbr</th>
+						<!-- <th>Job Code Descr</th> -->
+						<th>Issuing Auth</th>
+						
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.name}"></td>
+						<td th:text="${product.deptid}"></td>
+						<td th:text="${product.expiratnDt} ? ${#dates.format(product.expiratnDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.accomplishment}"></td>
+						<td th:text="${product.accomplishmentDescr}"></td>
+						<td th:text="${product.licenseNbr}"></td>
+						<!-- <td th:text="${product.jobCodeDescr}"></td> -->
+						<td th:text="${product.xIssuingAuth}"></td>					
+						
+				
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 17 -->
+  
+  </p>
+  <p th:case="'18'">
+  <center><h4>Job Code Education Data</h4></center>
+  <!-- Report 18 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Set Id</th>
+						<th>Jobcode</th>												
+						<th>Effective Date</th>
+						<th>State Title</th>
+						<th>Description</th>
+						
+						
+						
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.setid}"></td>
+						<td th:text="${product.jobcode}"></td>						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.jobTitle}"></td>
+						<td th:text="${product.educationDescription}"></td>
+				
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 18 -->
+  
+  </p>
+  <p th:case="'19'">
+    <center><h4>Job Code Experience Data</h4></center>
+  <!-- Report 19 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Set Id</th>
+						<th>Jobcode</th>	
+						<th>Job Title</th>											
+						<th>Effective Date</th>
+						<th>Description</th>
+						
+						
+						
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.setid}"></td>
+						<td th:text="${product.jobcode}"></td>
+						<td th:text="${product.jobTitle}"></td>						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.description}"></td>
+				
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 19 -->
+  
+  </p>
+  <p th:case="'20'">
+     <center><h4>Job Code Duty Data</h4></center>
+  <!-- Report 20 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Set Id</th>
+						<th>Jobcode</th>	
+						<th>Job Title</th>											
+						<th>Effective Date</th>
+						<th>Description</th>
+						
+						
+						
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.setid}"></td>
+						<td th:text="${product.jobcode}"></td>
+						<td th:text="${product.jobTitle}"></td>						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.dutyDescription}"></td>
+				
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 20 -->
+  
+  </p>
+  <p th:case="'21'">
+   <center><h4>Job Code Subs</h4></center>
+  <!-- Report 21 -->
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Set Id</th>
+						<th>Jobcode</th>												
+						<th>Effective Date</th>
+						<th>Years Of Exp</th>
+						<th>Highest Education Level</th>
+						
+						
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.setid}"></td>
+						<td th:text="${product.jobcode}"></td>						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.yearsOfExp}"></td>
+						<td th:text="${product.highestEducLvl}"></td>
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>
+  <!-- end Report 21 -->
+  
+  </p>
+  
+   <!-- Start Report 22 -->
+  <p th:case="'22'"> 
+  <center><h4>Job Code Competency Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						
+						<th>Jobcode</th>	
+						<th>Job Title</th>											
+						<th>Competency</th>
+						<th>Competency Description</th>
+						
+						<th>Eff Date</th>
+																
+						<th>Proficiency</th>
+						
+						
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						
+						<td th:text="${product.jobcode}"></td>
+						<td th:text="${product.jobTitle}"></td>						
+						<td th:text="${product.competency}"></td>
+						<td th:text="${product.competencyDescription}"></td>
+						
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+														
+						<td th:text="${product.proficiency}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 22 -->
+    <!-- Start Report 29 -->
+  <p th:case="'29'"> 
+  <center><h4>Job Code Profile Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						
+						<th>Jobcode</th>	
+						<th>Job Title</th>
+						<th>Sal Admin Plan</th>
+						<th>Grade</th>
+						<th>FLSA Status</th>
+						<th>State Class Cd</th>
+						<th>Description</th>
+						<th>Eff Date</th>
+						
+					
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						
+						<td th:text="${product.jobcode}"></td>
+						<td th:text="${product.jobTitle}"></td>
+						<td th:text="${product.salAdminPlan}"></td>
+						<td th:text="${product.grade}"></td>
+						<td th:text="${product.flsaStatus}"></td>
+						<td th:text="${product.xStateClassCd}"></td>						
+						<td th:text="${product.description}"></td>						
+							<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>		
+						
+						
+				
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 29 -->
+    
+    <!-- Start Report 25 -->
+  <p th:case="'25'"> 
+  <center><h4>Accomplishments - PE License (Prior to Oct 2014)</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>Name</th>												
+						<th>Business Unit</th>
+						<th>Deptid</th>
+						<th>License Nbr</th>
+						<th>Expiratn Dt</th>
+						<th>Empl Rcd</th>
+						<th>Accomplishment</th>
+						<th>Jobcode Desc</th>
+						<th>Accomplish Desc</th>
+						<th>Issuing Auth</th>
+						
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.name}"></td>						
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.deptid}"></td>
+						<td th:text="${product.licenseNbr}"></td>
+						<td th:text="${product.expiratnDt} ? ${#dates.format(product.expiratnDt, 'MM-dd-yyyy')}"></td>
+						
+						<td th:text="${product.emplRcd}"></td>
+						<td th:text="${product.accomplishment}"></td>
+						<td th:text="${product.jobCodeDescr}"></td>
+						<td th:text="${product.accomplishmentDscr}"></td>
+						<td th:text="${product.issuingAuth}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 25 -->
+    
+    <!-- Start Report 26 -->
+  <p th:case="'26'"> 
+  <center><h4>Job Code Education Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>Name</th>												
+						<th>Business Unit</th>
+						<th>Deptid</th>
+						<th>Accomplishment</th>						
+						<th>Dt Issued</th>
+						<th>Major Code</th>
+						<th>Major</th>
+						<th>School Code</th>
+						<th>School Name</th>
+						<th>Graduate Indicator</th>
+						
+				
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.name}"></td>						
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.deptid}"></td>
+						<td th:text="${product.accomplishment}"></td>
+						<td th:text="${product.dtIssued} ? ${#dates.format(product.dtIssued, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.majorCode}"></td>
+						<td th:text="${product.major}"></td>
+						<td th:text="${product.schoolCode}"></td>
+						<td th:text="${product.descr50}"></td>
+						<td th:text="${product.graduateIndicator}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 26 -->
+    
+    <!-- Start Report 27 -->
+  <p th:case="'27'"> 
+   <center><h4>Accomplishments - Language, Honor,Membership Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Emplid</th>
+						<th>Name</th>												
+						<th>Business Unit</th>
+						<th>Deptid</th>
+						<th>Accomplishment</th>						
+						<th>Dt Issued</th>						
+						<th>Accomplishment Descr</th>
+						<th>Accomp Category</th>
+						
+						
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.emplid}"></td>
+						<td th:text="${product.name}"></td>						
+						<td th:text="${product.businessUnit}"></td>
+						<td th:text="${product.deptid}"></td>
+						<td th:text="${product.accomplishment}"></td>
+						<td th:text="${product.dtIssued} ? ${#dates.format(product.dtIssued, 'MM-dd-yyyy')}"></td>						
+						<td th:text="${product.descr}"></td>
+						<td th:text="${product.accompCategory}"></td>
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 27 -->
+    
+    <!-- Start Report 24 -->
+  <p th:case="'24'"> 
+  <center><h4>Salary Allocation Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Fiscal Year</th>																	
+						<th>Business Unit</th>
+						<th>Year</th>
+						<th>Month Cd</th>						
+						<th>Allocation Amt</th>						
+						<th>Adjustmt Amt</th>
+						
+						<th>FTE Cap</th>
+						<th>Mgr Spv Cap</th>
+						<th>HR Approved Cap</th>
+						<th>FTE Cap Goal</th>
+						
+						
+						
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.fiscalYear}"></td>
+						<td th:text="${product.businessUnit}"></td>						
+						<td th:text="${product.year}"></td>
+						<td th:text="${product.monthcd}"></td>
+						<td th:text="${product.allocationAmt}"></td>												
+						<td th:text="${product.adjustmtAmt}"></td>
+						<td th:text="${product.fteCap}"></td>
+						
+						<td th:text="${product.xMgrSpvCap}"></td>
+						<td th:text="${product.xHrApprovedCap}"></td>
+						<td th:text="${product.xFteCapGoal}"></td>
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 24 -->
+    
+        <!-- Start Report 30 -->
+  <p th:case="'30'"> 
+  <center><h4>Alcohol Screening Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>FIRST_NAME</th>																	
+						<th>LAST_NAME</th>
+						<th>SCREEN_LEVEL</th>
+						<th>SSN_NUMBER</th>						
+						<th>COLLECTED_DATE</th>						
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.firstName}"></td>
+						<td th:text="${product.lastName}"></td>						
+						<td th:text="${product.screenLevel}"></td>
+						<td th:text="${product.ssnNumber}"></td>
+					
+						<td th:text="${product.collectedDate} ? ${#dates.format(product.collectedDate, 'MM-dd-yyyy')}"></td>
+						
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+  <!-- Start Report 31 -->
+  <p th:case="'31'"> 
+  <center><h4>Drug Test Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+    <div class="container">
+
+      <table id="example" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>FIRST_NAME</th>                                 
+            <th>LAST_NAME</th>
+             <th>SSN</th>
+              <th>Coll Status</th>
+               <th>Reason</th>
+            <th>Coll Date</th>
+            <th>Sch Date</th>           
+            <th>TestedFor</th>           
+            
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.firstName}"></td>
+            <td th:text="${product.lastName}"></td> 
+            <td th:text="${product.ssnNumber}"></td>
+            <td th:text="${product.collectionStatus}"></td>
+            <td th:text="${product.reason}"></td>
+            <td th:text="${product.collectedDate} ? ${#dates.format(product.collectedDate, 'MM-dd-yyyy')}"></td>
+            <td th:text="${product.scheduledDate} ? ${#dates.format(product.scheduledDate, 'MM-dd-yyyy')}"></td>
+            <td th:text="${product.testedFor}"></td>
+            
+            
+            
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+  <!-- Start Report 32 -->
+  <p th:case="'32'"> 
+  <center><h4>People Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+    <div class="container">
+
+      <table id="example" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>FIRST_NAME</th>                                 
+            <th>LAST_NAME</th>
+            <th>SSN_NUMBER</th>
+            <th>ALTERNATE_ID</th>
+            <th>CD_CERT_405</th>
+            <th>CD_VM_RECPT</th>
+            <th>ddo</th>
+              <th>DEPARTMENT_ID</th>
+            <th>dob</th>
+            <th>FUNC_CODE</th>
+            <th>HIRED_DATE</th>
+            <th>SI_RCPT</th>
+             <th>SI_CERT_404</th>
+              <th>VCM_CERT_406</th>
+
+  
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.firstName}"></td>
+            <td th:text="${product.lastName}"></td>  
+            <td th:text="${product.ssnNumber}"></td>         
+            <td th:text="${product.alternateId}"></td>
+            <td th:text="${product.cdCert405}"></td>
+            <td th:text="${product.cdVmRecpt}"></td>
+            <td th:text="${product.ddo}"></td>
+            <td th:text="${product.funcCode}"></td>
+            
+            <td th:text="${product.hiredDate} ? ${#dates.format(product.hiredDate, 'MM-dd-yyyy')}"></td>
+            <td th:text="${product.siCert404}"></td>
+            <td th:text="${product.siRcpt}"></td>
+            <td th:text="${product.vcmCert406}"></td>
+          
+      
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+  <!-- Start Report 33 -->
+  <p th:case="'33'"> 
+  <center><h4>Positive History Data</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+    <div class="container">
+
+      <table id="example" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>FIRST_NAME</th>                                 
+            <th>LAST_NAME</th>            
+            <th>SSN_NUMBER</th> 
+            
+            <th>ALTERNATE_ID</th>
+            <th>DATE_POSITIVE</th>
+            <th>subtype</th>          
+             
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.firstName}"></td>
+            <td th:text="${product.lastName}"></td>
+            <td th:text="${product.ssnNumber}"></td>
+           <td th:text="${product.alternateId}"></td>
+            <td th:text="${product.datePositive} ? ${#dates.format(product.datePositive, 'MM-dd-yyyy')}"></td>
+            <td th:text="${product.subtype}"></td>
+           
+            
+            
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 24 -->
+    
+  
+  <!-- Start Report 23 -->
+  <p th:case="'23'"> 
+   <center><h4>Training - Course Information</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Course</th>																	
+						<th>Effdt</th>
+											
+						<th>Course Type</th>						
+						<th>Creation Date</th>						
+						
+						<th>Course Status</th>
+						<th>Short Descr</th>
+						
+						
+						<th>Min</th>
+						<th>Max</th>
+						
+						<th>Dur Time</th>
+						<th>Educ Units</th>
+						<th>Long Description</th>
+						
+						
+						
+						
+						
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+						<td th:text="${product.course}"></td>
+						<td th:text="${product.effdt} ? ${#dates.format(product.effdt, 'MM-dd-yyyy')}"></td>
+						
+						<td th:text="${product.courseType}"></td>
+						<td th:text="${product.creationDt} ? ${#dates.format(product.creationDt, 'MM-dd-yyyy')}"></td>
+						
+						<td th:text="${product.courseStatus}"></td>												
+						<td th:text="${product.descrshort}"></td>
+					
+						
+						
+						<td th:text="${product.minStudents}"></td>
+						<td th:text="${product.maxStudents}"></td>
+						<td th:text="${product.durationTime}"></td>
+						<td th:text="${product.educationUnits}"></td>
+						<td th:text="${product.descrlong}"></td>
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 23 -->
+    
+    <!-- Start Report 28 -->
+  <p th:case="'28'"> 
+   <center><h4>Training History - ALL</h4></center>
+  <div class="fw-body" th:if="${not #lists.isEmpty(products)}">
+		<div class="container">
+
+			<table id="example" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Deptid</th>																	
+						<th>Emplid</th>
+											
+						<th>Business Unit</th>						
+						<th>Employee Name</th>						
+						
+						<th>Course</th>
+						<th>Course Title</th>
+						
+						
+						<th>Course Start Dt</th>
+						<th>Course End Dt</th>
+						<th>Internal External</th>
+						<th>Attendance</th>
+						
+						            					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}">
+					<td th:text="${product.deptid}"></td>
+				
+					<td th:text="${product.emplid}"></td>
+					<td th:text="${product.businessUnit}"></td>
+					<td th:text="${product.employeeName}"></td>
+						<td th:text="${product.course}"></td>
+						<td th:text="${product.courseTitle}"></td>
+						<td th:text="${product.courseStartDt} ? ${#dates.format(product.courseStartDt, 'MM-dd-yyyy')}"></td>
+						<td th:text="${product.courseEndDt} ? ${#dates.format(product.courseEndDt, 'MM-dd-yyyy')}"></td>
+						
+						<td th:text="${product.internalExternal}"></td>
+						
+						<td th:text="${product.attendance}"></td>												
+						
+						
+						
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	 <div class="panel panel-primary" th:if="${#lists.isEmpty(products)}">
+      <div class="panel-heading">NO RECORDS</div>
+      <div class="panel-body">No Records found, Please refine your search.</div>
+    </div>  
+  </p>
+    <!-- end Report 23 -->
+  
+  <p th:case="*">User is some other thing</p> 
+</div>
+        
+
+</body>
+
+
+</html>
